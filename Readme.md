@@ -18,12 +18,15 @@ Feature "New Feature",
   "I want do include this", ->
 
     Scenario "Singing", ->
+
+      voice = null
+
       Given "I am a good singing", ->
       When "I sing", ->
+        voice = 'good'
       Then "it should sound good", ->
-        describe 'Singing', ->
-          it 'should sound', ->
-            voice.should.eql 'good'
+        it 'sound good', ->
+          voice.should.eql 'good'
 
 ```
  
@@ -35,20 +38,22 @@ Run this test using mocha command:
 
 Mocha-cakes gives you access to functions _"Feature", "Scenario", "Given", "When", "Then" "And", "But"_ that wraps around mocha's `describe()`. So the above would output something like:
 
-```
-  Feature: SignUp 
+```cucumber
+  Feature: New Feature 
 
-	In order to use the application
-	as a new user
-	I want to signup
+  In order to use cool feature
+  as a new user
+  I want do include this
     
-    Scenario: New User
-      Given: I am new
-      When: I go to homepage
-      Then: I should see the page
-        ✓ should work 
+    Scenario: Singing
+      Given: I am a good singing
+      When: I sing
+      Then: it should sound good
+        ✓ sound good  
 
-  ✔ 1 tests complete (6ms)
+
+  ✔ 1 tests complete (3ms)
+
 ```
 
 # Use it
@@ -64,4 +69,4 @@ Or install it to your global `mocha/node_modules` directory and include it in yo
 
 ---
 
-Special Thanks to [TJ Holowaychuk](https://github.com/visionmedia) for Mocha, awesome test framework.
+\*Special Thanks\* to [TJ Holowaychuk](https://github.com/visionmedia) for Mocha, awesome test framework.
