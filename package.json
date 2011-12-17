@@ -2,6 +2,8 @@
   ,	"description" : "stories add-on for mocha test framework with cucumber given/then/when syntax."
   ,	"version" : "0.0.1"
   ,	"author" : "Quang Van <quang@orgnote.com>"
+  ,	"dependencies" : {	"coffee-script" : "*"
+                    }
   , "keywords" : ["mocha", "bdd", "stories", "cucumber", "test"]
   , "main" : "src/cakes"
 }
