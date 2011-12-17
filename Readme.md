@@ -86,7 +86,7 @@ Feature "Big Buttons",
 
 ```
 
-\* Remember, they're all `describe()`'s \*
+_\* Remember, they're all `describe()`'s_
 
 ## Reference
 
