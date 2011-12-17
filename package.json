@@ -3,6 +3,8 @@
   ,	"version" : "0.0.2"
   ,	"author" : "Quang Van <quang@orgnote.com>"
   ,	"homepage" : "https://github.com/quangv/mocha-cakes"
+  ,	"dependencies" : {	"colors" : "*"
+                    }
   ,	"devDependencies" : {	"coffee-script" : "*"
                     }
   , "keywords" : ["mocha", "bdd", "stories", "cucumber", "test"]
