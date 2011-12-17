@@ -36,7 +36,9 @@ Run this test using mocha command:
 
 # What's going on?
 
-Mocha-cakes gives you access to functions _"Feature", "Scenario", "Given", "When", "Then" "And", "But"_ that wraps around mocha's `describe()`. So the above would output something like:
+Mocha-cakes gives you access to functions _"Feature", "Scenario", "Given", "When", "Then" "And", "But"_ that wraps around mocha's `describe()`. 
+
+So the above would output something like:
 
 ```cucumber
   Feature: New Feature 
@@ -55,6 +57,41 @@ Mocha-cakes gives you access to functions _"Feature", "Scenario", "Given", "When
   ✔ 1 tests complete (3ms)
 
 ```
+
+# Documentation
+
+## Features
+
+```coffeescript
+
+require 'mocha-cakes'
+
+Feature "Big Buttons",
+  "As a user",
+  "I want big buttons",
+  "So it'll be easier to use", ->
+
+    Scenario "On Homepage", ->
+
+      Given "I am a new user", ->
+      When "I go to homepage", ->
+      And "I scroll down", ->
+      Then "I see big buttons", ->
+      But "no small text", ->
+
+      Given ->  # Previous
+      When "I scroll down more", ->
+      And "I reach end of page", ->
+      Then "all I see is big buttons", ->
+
+```
+
+\* Remember, they're all `describe()`'s \*
+
+## Reference
+
+[The WHY behind TDD/BDD and the HOW with RSpec](http://www.slideshare.net/bmabey/the-why-behind-tddbdd-and-the-how-with-rspec)
+
 
 # Use it
 
