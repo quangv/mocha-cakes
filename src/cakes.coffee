@@ -1,5 +1,10 @@
-exports.Feature = (feature, benefit, who, desire, callback)->
-	message = "Feature: #{feature} \n\n\t#{benefit}\n\t#{who}\n\t#{desire}"
+exports.Feature = (feature, story..., callback)->
+	#  exp. Feature 'new feature', 'in order to do good', 'as a user', 'I want to do good', ->
+	# message = "Feature: #{feature} \n\n\t#{benefit}\n\t#{who}\n\t#{desire}"
+
+	message = "Feature: #{feature} \n"
+	(message += '\n\t'+part for part in story)
+
 	describe(message, callback)
 	return
 
