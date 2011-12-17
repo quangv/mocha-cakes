@@ -1,8 +1,9 @@
 { 	"name" : "mocha-cakes"
-  ,	"description" : "stories add-on for mocha test framework with cucumber given/then/when syntax."
+  ,	"description" : "bdd stories add-on for mocha test framework with cucumber given/then/when syntax."
   ,	"version" : "0.0.2"
   ,	"author" : "Quang Van <quang@orgnote.com>"
-  ,	"dependencies" : {	"coffee-script" : "*"
+  ,	"homepage" : "https://github.com/quangv/mocha-cakes"
+  ,	"devDependencies" : {	"coffee-script" : "*"
                     }
   , "keywords" : ["mocha", "bdd", "stories", "cucumber", "test"]
   , "main" : "src/cakes"
