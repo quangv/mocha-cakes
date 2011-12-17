@@ -102,11 +102,6 @@ Install local:
     cd my_project/node_modules
     npm -d install mocha-cakes
 
-Or install it to your global `mocha/node_modules` directory and include it in your test suites `mocha.opts` file `--require mocha-cakes`
-
-    cd /usr/local/lib/node_modules/mocha  # Or wherever mocha is installed globally
-    sudo npm -d install mocha-cakes
-
 ---
 
 \*Special Thanks\* to [TJ Holowaychuk](https://github.com/visionmedia) for Mocha, awesome test framework.
