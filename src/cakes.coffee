@@ -1,5 +1,5 @@
 exports.Feature = (feature, benefit, who, desire, callback)->
-	message = "Feature: #{feature} \n\t Story -#{benefit} #{who} #{desire}"
+	message = "Feature: #{feature} \n\n\t#{benefit}\n\t#{who}\n\t#{desire}"
 	describe(message, callback)
 	return
 
