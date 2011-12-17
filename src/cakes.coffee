@@ -29,3 +29,6 @@ exports.Then = (outcome, callback)->
 
 exports.But = (not_outcome)->
 	describe(" but: #{not_outcome}", callback)
+
+# Add function names to global scope.
+(global[name] = func for name, func of module.exports)
