@@ -10,6 +10,9 @@ exports.Feature = (feature, story..., callback)->
 	describe(message, callback)
 	return
 
+exports.Background = (action, callback)->
+	describe("\n   Background: #{action}".magenta, callback)
+
 exports.Scenario = (message, callback)->
 	describe("\n    Scenario: #{message}".green, callback)
 
