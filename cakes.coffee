@@ -10,30 +10,33 @@ exports.Feature = (feature, story..., callback)->
 	describe(message, callback)
 	return
 
+depict = (label, args)->
+	if args.length == 1
+		args[1] = args[0]
+		label = ''
+
+	describe label.replace('%s', args[0]), args[1]
+
 exports.Background = (action, callback)->
-	describe("\n   Background: #{action}".magenta, callback)
+	depict "\n   Background: #{action}".magenta, arguments
 
-exports.Scenario = (message, callback)->
-	describe("\n    Scenario: #{message}".green, callback)
+exports.Scenario = ->
+	depict "\n    Scenario: %s".green, arguments
 
-exports.Given = (context, callback)->
-	if arguments.length == 1
-		callback = context
-		context = 'previous'.grey
+exports.Given = ->
+	depict "Given: %s", arguments
 
-	describe("Given: #{context}", callback)
+exports.When = ->
+	depict " When: %s", arguments
 
-exports.When = (action, callback)->
-	describe(" When: #{action}", callback)
+exports.And = ->
+	depict "  and %s", arguments
 
-exports.And = (more_action_or_outcome, callback)->
-	describe("  and #{more_action_or_outcome}", callback)
+exports.Then = ->
+	depict " Then: %s", arguments
 
-exports.Then = (outcome, callback)->
-	describe(" Then: #{outcome}", callback)
-
-exports.But = (not_outcome, callback)->
-	describe(" But #{not_outcome}", callback)
+exports.But = ->
+	depict " But %s", arguments
 
 # Add function names to global scope.
 (global[name] = func for name, func of module.exports)
