@@ -4,8 +4,8 @@ exports.Feature = (feature, story..., callback)->
 	#  exp. Feature 'new feature', 'in order to do good', 'as a user', 'I want to do good', ->
 	# message = "Feature: #{feature} \n\n\t#{benefit}\n\t#{who}\n\t#{desire}"
 
-	message = "Feature: #{feature} \n".green.underline
-	(message += '\n\t'+part for part in story)
+	message = "Feature: #{feature} \n\n".green.underline
+	(message += '\t'+part+'\n' for part in story)
 
 	describe(message, callback)
 	return
@@ -18,7 +18,7 @@ depict = (label, args)->
 	describe label.replace('%s', args[0]), args[1]
 
 exports.Background = (action, callback)->
-	depict "\n   Background: #{action}".magenta, arguments
+	depict action.magenta, arguments
 
 exports.Scenario = ->
 	depict "\n    Scenario: %s".green, arguments
