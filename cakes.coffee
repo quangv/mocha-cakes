@@ -38,5 +38,8 @@ exports.Then = ->
 exports.But = ->
 	depict " But %s", arguments
 
+exports.Spec = ->  # describe() start of spec file
+	depict '%s'.blue, arguments
+
 # Add function names to global scope.
 (global[name] = func for name, func of module.exports)
