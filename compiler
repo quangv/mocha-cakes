@@ -1,0 +1,3 @@
+#!/bin/bash
+
+coffee -c -w cakes.coffee
