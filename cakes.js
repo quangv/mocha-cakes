@@ -32,23 +32,23 @@
   };
 
   exports.Given = function() {
-    return depict("Given: %s", arguments);
+    return depict("Given:".yellow + " %s", arguments);
   };
 
   exports.When = function() {
-    return depict(" When: %s", arguments);
+    return depict(" When:".yellow + " %s", arguments);
   };
 
   exports.And = function() {
-    return depict("  and %s", arguments);
+    return depict("  and".grey + "  %s", arguments);
   };
 
   exports.Then = function() {
-    return depict(" Then: %s", arguments);
+    return depict(" Then:".yellow + " %s", arguments);
   };
 
   exports.But = function() {
-    return depict(" But %s", arguments);
+    return depict("  But".yellow + "  %s", arguments);
   };
 
   exports.Spec = function() {

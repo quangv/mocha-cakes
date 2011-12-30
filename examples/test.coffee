@@ -15,6 +15,8 @@ Feature "New Feature",
 			Then "it should sound good", ->
 				it 'sound good', ->
 					voice.should.eql 'good'
+			And "it should", ->
+			But "it should", ->
 
 
 # Run with

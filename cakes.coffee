@@ -24,19 +24,19 @@ exports.Scenario = ->
 	depict "\n    Scenario: %s".green, arguments
 
 exports.Given = ->
-	depict "Given: %s", arguments
+	depict "Given:".yellow+" %s", arguments
 
 exports.When = ->
-	depict " When: %s", arguments
+	depict " When:".yellow+" %s", arguments
 
 exports.And = ->
-	depict "  and %s", arguments
+	depict "  and".grey+"  %s", arguments
 
 exports.Then = ->
-	depict " Then: %s", arguments
+	depict " Then:".yellow+" %s", arguments
 
 exports.But = ->
-	depict " But %s", arguments
+	depict "  But".yellow+"  %s", arguments
 
 exports.Spec = ->  # describe() start of spec file
 	depict '%s'.blue, arguments
