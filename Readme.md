@@ -75,6 +75,9 @@ Feature "Big Buttons",
 
       Given "I am a new user", ->
       When "I go to homepage", ->
+        step 'open browser', (done)->
+        step 'visit page', ->
+
       And "I scroll down", ->
       Then "I see big buttons", ->
       But "no small text", ->
