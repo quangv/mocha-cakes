@@ -1,6 +1,6 @@
 (function() {
-  var colors, depict, func, name, _ref;
-  var __slice = Array.prototype.slice;
+  var colors, depict, func, name, _ref,
+    __slice = Array.prototype.slice;
 
   colors = require('colors');
 
@@ -53,6 +53,10 @@
 
   exports.Spec = function() {
     return depict('%s'.blue, arguments);
+  };
+
+  exports.step = function(title, fn) {
+    return it(title, fn);
   };
 
   _ref = module.exports;
