@@ -1,4 +1,4 @@
-require 'mocha-cakes'
+require '../'
 
 Feature "New Feature",
 	"In order to use cool feature",

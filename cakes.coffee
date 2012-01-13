@@ -17,8 +17,10 @@ depict = (label, args)->
 
 	describe label.replace('%s', args[0]), args[1]
 
+###
 exports.Background = (action, callback)->
 	depict action.magenta, arguments
+###
 
 exports.Scenario = ->
 	depict "\n    Scenario: %s".green, arguments

@@ -23,9 +23,10 @@
     return describe(label.replace('%s', args[0]), args[1]);
   };
 
-  exports.Background = function(action, callback) {
-    return depict(action.magenta, arguments);
-  };
+  /*
+  exports.Background = (action, callback)->
+  	depict action.magenta, arguments
+  */
 
   exports.Scenario = function() {
     return depict("\n    Scenario: %s".green, arguments);
