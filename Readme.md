@@ -42,7 +42,7 @@ _"Feature", "Scenario", "And", "But"_ that wraps around mocha's `describe()`.
 
 &
 
-_"Given", "When", "Then"_ wraps around mocha's `it()`.
+_"Given", "When", "Then", 'step'_ wraps around mocha's `it()`.
 
 So the above would output something like:
 
