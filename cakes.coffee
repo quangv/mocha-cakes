@@ -42,7 +42,7 @@ exports.And = ->
 	dic 'describe', "  and".grey+"  %s", arguments
 
 exports.But = ->
-	dic 'describe', "  But".yellow+"  %s", arguments
+	dic 'describe', "  But".grey+"  %s", arguments
 
 
 exports.step = ->
