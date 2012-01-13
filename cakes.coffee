@@ -10,12 +10,14 @@ exports.Feature = (feature, story..., callback)->
 	describe(message, callback)
 	return
 
-depict = (label, args)->
-	if args.length == 1
-		args[1] = args[0]
-		label = ''
+dic = (type, label, args)->  # Dictate to describe() or it()
+	if type in ['describe', 'it']
+		if args.length == 1
+			args[1] = args[0]
+			label = ''
 
-	describe label.replace('%s', args[0]), args[1]
+		global[type] label.replace('%s', args[0]), args[1]
+
 
 ###
 exports.Background = (action, callback)->
@@ -23,28 +25,33 @@ exports.Background = (action, callback)->
 ###
 
 exports.Scenario = ->
-	depict "\n    Scenario: %s".green, arguments
+	dic 'describe', "\n    Scenario: %s".green, arguments
+
 
 exports.Given = ->
-	depict "Given:".yellow+" %s", arguments
+	dic 'it', "Given:".yellow+" %s", arguments
 
 exports.When = ->
-	depict " When:".yellow+" %s", arguments
-
-exports.And = ->
-	depict "  and".grey+"  %s", arguments
+	dic 'it', " When:".yellow+" %s", arguments
 
 exports.Then = ->
-	depict " Then:".yellow+" %s", arguments
+	dic 'it', " Then:".yellow+" %s", arguments
+
+
+exports.And = ->
+	dic 'describe', "  and".grey+"  %s", arguments
 
 exports.But = ->
-	depict "  But".yellow+"  %s", arguments
+	dic 'describe', "  But".yellow+"  %s", arguments
+
+
+exports.step = ->
+	dic 'it', '', arguments
+
 
 exports.Spec = ->  # describe() start of spec file
-	depict '%s'.blue, arguments
+	dic 'describe', '%s'.blue, arguments
 
-exports.step = (title, fn)->
-	it title, fn
 
 # Add function names to global scope.
 (global[name] = func for name, func of module.exports)
