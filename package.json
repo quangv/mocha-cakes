@@ -8,5 +8,5 @@
   ,	"devDependencies" : {	"coffee-script" : "*"
                     }
   , "keywords" : ["mocha", "bdd", "stories", "cucumber", "test"]
-  , "main" : "cakes"
+  , "main" : "./index.js"
 }
