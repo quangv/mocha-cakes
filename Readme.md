@@ -36,7 +36,13 @@ Run this test using mocha command:
 
 # What's going on?
 
-Mocha-cakes gives you access to functions _"Feature", "Scenario", "Given", "When", "Then" "And", "But"_ that wraps around mocha's `describe()`. 
+Mocha-cakes gives you access to function names 
+
+_"Feature", "Scenario", "And", "But"_ that wraps around mocha's `describe()`. 
+
+&
+
+_"Given", "When", "Then"_ wraps around mocha's `it()`.
 
 So the above would output something like:
 
@@ -48,9 +54,9 @@ So the above would output something like:
   I want do include this
     
     Scenario: Singing
-      Given: I am a good singing
-      When: I sing
-      Then: it should sound good
+      ✓ Given: I am a good singing
+      ✓ When: I sing
+      ✓ Then: it should sound good
         ✓ sound good  
 
 
@@ -87,9 +93,11 @@ Feature "Big Buttons",
       And "I reach end of page", ->
       Then "all I see is big buttons", ->
 
+      Spec 'test.spec.coffee', ->
+
 ```
 
-_\* Remember, they're all `describe()`'s_
+_\* Remember, they're all either `describe()`'s or `it()`_
 
 ## Reference
 

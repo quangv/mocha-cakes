@@ -13,8 +13,8 @@ Feature "New Feature",
 			When "I sing", ->
 				voice = 'good'
 			Then "it should sound good", ->
-				it 'sound good', ->
-					voice.should.eql 'good'
+				voice.should.eql 'good'
+
 			And "it should", ->
 			But "it should", ->
 
