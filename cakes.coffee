@@ -64,7 +64,7 @@ exports.Step = ->
 
 
 exports.Spec = ->  # describe() start of spec file
-	dic 'describe', '%s'.blue, arguments
+	dic 'describe', '=== %s ==='.blue, arguments
 
 
 # Add function names to global scope.
