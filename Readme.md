@@ -42,7 +42,7 @@ _"Feature", "Scenario", "And", "But", "Given\_", "When\_", "Then\_"_ that wraps 
 
 &
 
-_"Given", "When", "Then", 'step'_ wraps around mocha's `it()`.
+_"Given", "When", "Then", 'Step'_ wraps around mocha's `it()`.
 
 So the above would output something like:
 
@@ -54,11 +54,8 @@ So the above would output something like:
   I want do include this
     
     Scenario: Singing
-      |
       ✓ Given: I am a good singing
-      |
       ✓ When: I sing
-      |
       ✓ Then: it should sound good
         ✓ sound good  
 
@@ -84,8 +81,8 @@ Feature "Big Buttons",
 
       Given "I am a new user", ->
       When "I go to homepage", ->
-        step 'open browser', (done)->
-        step 'visit page', ->
+        Step 'open browser', (done)->
+        Step 'visit page', ->
 
       And "I scroll down", ->
       Then "I see big buttons", ->

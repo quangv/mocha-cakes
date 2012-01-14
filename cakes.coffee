@@ -59,7 +59,7 @@ exports.But = ->
 	dic 'describe', "  But".grey+"  %s", arguments
 
 
-exports.step = ->
+exports.Step = ->
 	dic 'it', '%s', arguments
 
 
