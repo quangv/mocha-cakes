@@ -60,7 +60,7 @@ exports.But = ->
 
 
 exports.step = ->
-	dic 'it', '', arguments
+	dic 'it', '%s', arguments
 
 
 exports.Spec = ->  # describe() start of spec file
