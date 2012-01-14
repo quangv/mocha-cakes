@@ -38,7 +38,7 @@ Run this test using mocha command:
 
 Mocha-cakes gives you access to function names 
 
-_"Feature", "Scenario", "And", "But"_ that wraps around mocha's `describe()`. 
+_"Feature", "Scenario", "And", "But", "Given\_", "When\_", "Then\_"_ that wraps around mocha's `describe()`. 
 
 &
 
@@ -54,8 +54,11 @@ So the above would output something like:
   I want do include this
     
     Scenario: Singing
+      |
       ✓ Given: I am a good singing
+      |
       ✓ When: I sing
+      |
       ✓ Then: it should sound good
         ✓ sound good  
 
