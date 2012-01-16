@@ -38,11 +38,12 @@ Run this test using mocha command:
 
 Mocha-cakes gives you access to function names 
 
-_"Feature", "Scenario", "And", "But", "Given\_", "When\_", "Then\_"_ that wraps around mocha's `describe()`. 
+_"Feature", "Scenario", "And", "But"_ that wraps around mocha's `describe()`. 
 
-&
+"Given_", "When_", "Then_" (with underscore) also converts to _describe()_
 
 _"Given", "When", "Then", 'Step'_ wraps around mocha's `it()`.
+
 
 So the above would output something like:
 
