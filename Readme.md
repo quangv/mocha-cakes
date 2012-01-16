@@ -81,7 +81,7 @@ Feature "Big Buttons",
     Scenario "On Homepage", ->
 
       Given "I am a new user", ->
-      When "I go to homepage", ->
+      When_ "I go to homepage", ->
         Step 'open browser', (done)->
         Step 'visit page', ->
 
