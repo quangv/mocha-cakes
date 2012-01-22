@@ -1,4 +1,6 @@
 colors = require 'colors'
+_ = require 'underscore'
+log = require 'log'
 
 exports.Feature = (feature, story..., callback)->
 	#  exp. Feature 'new feature', 'in order to do good', 'as a user', 'I want to do good', ->
@@ -10,18 +12,29 @@ exports.Feature = (feature, story..., callback)->
 	describe(message, callback)
 	return
 
-dic = (type, label, args, padding=false)->  # Dictate to describe() or it()
+dic = (type, label, args, options={})->  # Dictate to describe() or it()
+
+	_.extend options,
+		padding : false
 
 	if type in ['describe', 'it']
 		if args.length == 1
 			args[1] = args[0]
 			label = ''
 
-		if padding
+		label = label.replace('%s', args[0])
+		cb = args[1]
+
+		if options.pending
+			if cb.toString() == (->).toString()  # If Blank
+				label = '(Pending) '+label
+				
+
+		if options.padding
 			describe '|'.green, ->
-				global[type] label.replace('%s', args[0]), args[1]
+				global[type] label, cb
 		else
-			global[type] label.replace('%s', args[0]), args[1]
+			global[type] label, cb
 
 
 ###
@@ -34,22 +47,22 @@ exports.Scenario = ->
 
 
 exports.Given = ->
-	dic 'it', "Given:".yellow+" %s", arguments, true
+	dic 'it', "Given:".yellow+" %s", arguments, padding:true,pending:true
 
 exports.When = ->
-	dic 'it', " When:".yellow+" %s", arguments, true
+	dic 'it', " When:".yellow+" %s", arguments, padding:true,pending:true
 
 exports.Then = ->
-	dic 'it', " Then:".yellow+" %s", arguments, true
+	dic 'it', " Then:".yellow+" %s", arguments, padding:true,pending:true
 
 exports.Given_ = ->
-	dic 'describe', " Given:".yellow+" %s", arguments, true
+	dic 'describe', " Given:".yellow+" %s", arguments, padding:true
 
 exports.When_ = ->
-	dic 'describe', "  When:".yellow+" %s", arguments, true
+	dic 'describe', "  When:".yellow+" %s", arguments, padding:true
 
 exports.Then_ = ->
-	dic 'describe', "  Then:".yellow+" %s", arguments, true
+	dic 'describe', "  Then:".yellow+" %s", arguments, padding:true
 
 
 exports.And = ->
