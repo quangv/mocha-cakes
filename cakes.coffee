@@ -2,6 +2,23 @@ log = require 'log'
 
 colors = require 'colors'
 _ = require 'underscore'
+{argv} = require 'optimist'
+
+
+interface =
+	bdd :
+		it : 'it'
+		describe : 'describe'
+	tdd :
+		it : 'test'
+		describe : 'suite'
+
+argv.ui = argv.ui ? argv.u  # mocha option --ui overwrites -u
+if argv.ui && (argv.ui == 'tdd' or _.last(argv.ui) == 'tdd')
+	ui = interface.tdd
+else
+	ui = interface.bdd  # Default
+
 
 exports.Feature = (feature, story..., callback)->
 	#  exp. Feature 'new feature', 'in order to do good', 'as a user', 'I want to do good', ->
@@ -10,8 +27,9 @@ exports.Feature = (feature, story..., callback)->
 	message = "Feature: #{feature} \n\n".green.underline
 	(message += '\t'+part+'\n' for part in story)
 
-	describe(message, callback)
+	global[ui.describe](message, callback)
 	return
+
 
 dic = (type, label, args, options={})->  # Dictate to describe() or it()
 
@@ -33,10 +51,10 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 				
 
 		fn = ->
-			global[type] label, cb
+			global[ui[type]] label, cb
 
 		if options.padding
-			describe '|'.green, ->
+			global[ui.describe] '|'.green, ->
 				fn()
 		else
 			fn()
