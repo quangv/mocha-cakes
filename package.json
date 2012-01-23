@@ -3,8 +3,9 @@
   ,	"version" : "0.0.9"
   ,	"author" : "Quang Van <quang@orgnote.com>"
   ,	"homepage" : "https://github.com/quangv/mocha-cakes"
-  ,	"dependencies" : {	"colors" : "*",
-                        "underscore" : "*"    
+  ,	"dependencies" : {	"colors" : "*"
+                       ,"underscore" : "*"    
+                       ,"optimist" : "*"    
                     }
   ,	"devDependencies" : {	"coffee-script" : "*"
                     }

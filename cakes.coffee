@@ -1,6 +1,7 @@
+log = require 'log'
+
 colors = require 'colors'
 _ = require 'underscore'
-log = require 'log'
 
 exports.Feature = (feature, story..., callback)->
 	#  exp. Feature 'new feature', 'in order to do good', 'as a user', 'I want to do good', ->
@@ -14,8 +15,9 @@ exports.Feature = (feature, story..., callback)->
 
 dic = (type, label, args, options={})->  # Dictate to describe() or it()
 
-	_.extend options,
-		padding : false
+	options = _.extend
+		padding:false
+	, options
 
 	if type in ['describe', 'it']
 		if args.length == 1
@@ -30,11 +32,14 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 				label = '(Pending) '+label
 				
 
+		fn = ->
+			global[type] label, cb
+
 		if options.padding
 			describe '|'.green, ->
-				global[type] label, cb
+				fn()
 		else
-			global[type] label, cb
+			fn()
 
 
 ###
