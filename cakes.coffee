@@ -31,6 +31,16 @@ exports.Feature = (feature, story..., callback)->
 	return
 
 
+args_wash = (args)->
+	if args.length == 1  # allow blank label
+		title = ''
+		cb = args[0]
+	else
+		title = args[0]
+		cb = args[1]
+
+	return [title, cb]
+
 dic = (type, label, args, options={})->  # Dictate to describe() or it()
 
 	options = _.extend
@@ -38,12 +48,13 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 	, options
 
 	if type in ['describe', 'it']
-		if args.length == 1
-			args[1] = args[0]
-			label = ''
 
-		label = label.replace('%s', args[0])
-		cb = args[1]
+		[title, cb] = args_wash args
+
+		if args.length == 1  # allow blank label
+			label = ''
+		else
+			label = label.replace('%s', title)
 
 		if options.pending
 			if cb.toString() == (->).toString()  # If Blank
@@ -69,14 +80,29 @@ exports.Scenario = ->
 	dic 'describe', "\n    Scenario: %s".green, arguments
 
 
+gwt = (label, args)->
+	[title, cb] = args_wash args
+
+	###
+	#log 'gwt', title, cb.length
+	unless cb.length >= 1
+		callback = (done)->
+			cb()
+			done()
+	else
+		callback = cb
+	###
+
+	dic 'it', label, [title,cb], padding:true,pending:true
+
 exports.Given = ->
-	dic 'it', "Given:".yellow+" %s", arguments, padding:true,pending:true
+	gwt "Given:".yellow+" %s", arguments
 
 exports.When = ->
-	dic 'it', " When:".yellow+" %s", arguments, padding:true,pending:true
+	gwt " When:".yellow+" %s", arguments
 
 exports.Then = ->
-	dic 'it', " Then:".yellow+" %s", arguments, padding:true,pending:true
+	gwt " Then:".yellow+" %s", arguments
 
 exports.Given_ = ->
 	dic 'describe', " Given:".yellow+" %s", arguments, padding:true
