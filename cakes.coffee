@@ -115,10 +115,10 @@ exports.Then_ = ->
 
 
 exports.And = ->
-	dic 'describe', "  and".grey+"  %s", arguments
+	gwt "  and".grey+"  %s", arguments
 
 exports.But = ->
-	dic 'describe', "  But".grey+"  %s", arguments
+	gwt "  But".grey+"  %s", arguments
 
 
 exports.Step = ->
