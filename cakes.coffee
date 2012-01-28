@@ -45,6 +45,7 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 
 	options = _.extend
 		padding:false
+		padding_color:'green'
 	, options
 
 	if type in ['describe', 'it']
@@ -65,7 +66,7 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 			global[ui[type]] label, cb
 
 		if options.padding
-			global[ui.describe] '|'.green, ->
+			global[ui.describe] '◦'[options.padding_color], ->
 				fn()
 		else
 			fn()
@@ -80,8 +81,13 @@ exports.Scenario = ->
 	dic 'describe', "\n    Scenario: %s".green, arguments
 
 
-gwt = (label, args)->
+gwt = (label, args, options)->
 	[title, cb] = args_wash args
+
+	options = _.extend
+		padding:true
+		pending:true
+	, options
 
 	###
 	#log 'gwt', title, cb.length
@@ -93,7 +99,7 @@ gwt = (label, args)->
 		callback = cb
 	###
 
-	dic 'it', label, [title,cb], padding:true,pending:true
+	dic 'it', label, [title,cb], options
 
 exports.Given = ->
 	gwt "Given:".yellow+" %s", arguments
@@ -115,10 +121,10 @@ exports.Then_ = ->
 
 
 exports.And = ->
-	gwt "  and".grey+"  %s", arguments
+	gwt "  and".grey+"  %s", arguments, padding_color:'black'
 
 exports.But = ->
-	gwt "  But".grey+"  %s", arguments
+	gwt "  But".grey+"  %s", arguments, padding_color:'black'
 
 
 exports.Step = ->
