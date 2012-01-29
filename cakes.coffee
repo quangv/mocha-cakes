@@ -1,5 +1,3 @@
-log = require 'log'
-
 colors = require 'colors'
 _ = require 'underscore'
 _.str = require 'underscore.string'
