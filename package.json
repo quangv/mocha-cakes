@@ -6,6 +6,7 @@
   ,	"dependencies" : {	"colors" : "*"
                        ,"underscore" : "*"    
                        ,"optimist" : "*"    
+                       ,"underscore.string" : "*"    
                     }
   ,	"devDependencies" : {	"coffee-script" : "*"
                     }

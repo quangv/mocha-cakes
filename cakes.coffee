@@ -2,6 +2,9 @@ log = require 'log'
 
 colors = require 'colors'
 _ = require 'underscore'
+_.str = require 'underscore.string'
+_.mixin _.str.exports()
+
 {argv} = require 'optimist'
 
 
@@ -59,11 +62,15 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 
 		if options.pending
 			if cb.toString() == (->).toString()  # If Blank
-				label = '(Pending) '+label
+				label = '◊ '+_.clean(label.stripColors)+' (pending)'
+				cb = null
 				
 
 		fn = ->
-			global[ui[type]] label, cb
+			if type is 'it' and not cb
+				global[ui[type]] label
+			else
+				global[ui[type]] label, cb
 
 		if options.padding
 			global[ui.describe] '◦'[options.padding_color], ->
