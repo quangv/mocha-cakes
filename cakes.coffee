@@ -25,7 +25,7 @@ exports.Feature = (feature, story..., callback)->
 	#  exp. Feature 'new feature', 'in order to do good', 'as a user', 'I want to do good', ->
 	# message = "Feature: #{feature} \n\n\t#{benefit}\n\t#{who}\n\t#{desire}"
 
-	message = "Feature: #{feature} \n\n".green.underline
+	message = "Feature: #{feature} \n\n".green.underline.bold
 	(message += '\t'+part+'\n' for part in story)
 
 	global[ui.describe](message, callback)
