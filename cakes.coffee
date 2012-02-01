@@ -53,9 +53,7 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 
 	if type in ['describe', 'it']
 
-		log args
 		[title, cb] = args_wash args
-		log title, cb
 
 		if args.length == 1 and typeof args[0] == 'function'  # allow blank label
 			label = ''
