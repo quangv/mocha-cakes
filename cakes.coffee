@@ -33,12 +33,14 @@ exports.Feature = (feature, story..., callback)->
 
 
 args_wash = (args)->
-	if args.length == 1  # allow blank label
-		title = ''
-		cb = args[0]
-	else
+	title = ''  # allow blank  labels
+	cb = undefined
+
+	if typeof args[0] == 'string' or typeof args[1] == 'function'
 		title = args[0]
 		cb = args[1]
+	else if typeof args[0] == 'function'
+		cb = args[0]
 
 	return [title, cb]
 
@@ -51,15 +53,17 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 
 	if type in ['describe', 'it']
 
+		log args
 		[title, cb] = args_wash args
+		log title, cb
 
-		if args.length == 1  # allow blank label
+		if args.length == 1 and typeof args[0] == 'function'  # allow blank label
 			label = ''
 		else
 			label = label.replace('%s', title)
 
 		if options.pending
-			if cb.toString() == (->).toString()  # If Blank
+			if not cb or cb.toString() == (->).toString()  # If Blank
 				label = '◊ '+_.clean(label.stripColors)+' (pending)'
 				cb = null
 				
@@ -133,7 +137,7 @@ exports.But = ->
 
 
 exports.Step = ->
-	dic 'it', '%s', arguments
+	dic 'it', '%s', arguments, pending:true
 
 
 exports.Spec = ->  # describe() start of spec file
