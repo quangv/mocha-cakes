@@ -10,6 +10,6 @@
                     }
   ,	"devDependencies" : {	"coffee-script" : "*"
                     }
-  , "keywords" : ["mocha", "bdd", "stories", "cucumber", "test"]
+  , "keywords" : ["mocha", "bdd", "stories", "cucumber", "test", "testing", "acceptance", "customer", "functional", "end-user"]
   , "main" : "./index.js"
 }
