@@ -138,7 +138,7 @@ exports.Step = ->
 	dic 'it', '%s', arguments, pending:true
 
 
-exports.Spec = ->  # describe() start of spec file
+exports.Describe = exports.Spec = ->  # describe() start of spec file
 	dic 'describe', '=== %s ==='.blue, arguments
 
 

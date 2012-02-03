@@ -44,6 +44,8 @@ _"Given", "When", "Then", "And", "But", "Step"_ wraps around mocha's `it()`.
 
 "Given\_", "When\_", "Then\_" (with underscore) also converts to _describe()_
 
+Also bonus, "Spec" and "Describe" wraps around mocha's _describe()_ also, that could be used at the start of spec files. It prints out in bolded blue header with `-R Spec`.
+
 So the above would output something like:
 
 ```cucumber
