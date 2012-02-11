@@ -108,11 +108,9 @@ _\* Remember, they're all either `describe()`'s or `it()`_
 
 # Use it
 
-Prerequisite: `coffee-script`
+Install:
 
-Install local:
-
-    cd my_project/node_modules
+    cd my_project
     npm -d install mocha-cakes
 
 ---
