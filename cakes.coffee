@@ -128,7 +128,7 @@ exports.Then_ = ->
 
 
 exports.And = ->
-	gwt "  and".grey+"  %s", arguments, padding_color:'black'
+	gwt "  And".grey+"  %s", arguments, padding_color:'black'
 
 exports.But = ->
 	gwt "  But".grey+"  %s", arguments, padding_color:'black'
