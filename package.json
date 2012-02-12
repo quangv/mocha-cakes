@@ -9,6 +9,8 @@
                        ,"optimist" : "*"    
                        ,"underscore.string" : "*"    
                     }
+  ,	"devDependencies" : {  "mocha" : "*"
+                    }
   , "keywords" : ["mocha", "bdd", "stories", "cucumber", "test", "testing", "gherkin", "acceptance", "customer", "functional", "end-user"]
   , "main" : "./index.js"
 }
