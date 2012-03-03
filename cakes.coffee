@@ -85,9 +85,13 @@ exports.Background = (action, callback)->
 ###
 
 exports.Scenario = ->
-	if arguments[0]
-		dic 'describe', "\n    Scenario: %s".green, arguments
+	unless arguments[0]
+		arguments = _.toArray(arguments)
+		arguments.shift()  # removes false
+		arguments[1] = ->  # removes call body
+		arguments[0] = ('(skipped) '+arguments[0]).grey
 
+	dic 'describe', "\n    Scenario: %s".green, arguments
 
 gwt = (label, args, options)->
 	[title, cb] = args_wash args
