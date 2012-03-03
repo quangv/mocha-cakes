@@ -85,7 +85,8 @@ exports.Background = (action, callback)->
 ###
 
 exports.Scenario = ->
-	dic 'describe', "\n    Scenario: %s".green, arguments
+	if arguments[0]
+		dic 'describe', "\n    Scenario: %s".green, arguments
 
 
 gwt = (label, args, options)->
