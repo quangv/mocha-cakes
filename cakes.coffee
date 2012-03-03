@@ -89,7 +89,7 @@ exports.Scenario = ->
 		arguments = _.toArray(arguments)
 		arguments.shift()  # removes false
 		arguments[1] = ->  # removes call body
-		arguments[0] = ('(skipped) '+arguments[0]).grey
+		arguments[0] = ('(skipped) '+arguments[0]).yellow.bold
 
 	dic 'describe', "\n    Scenario: %s".green, arguments
 
