@@ -23,18 +23,31 @@ class MochaInterface
 
 mocha = new MochaInterface
 
+createFeature = (options)->
 
-exports.Feature = (feature, story..., callback)->
-	#  exp. Feature 'new feature', 'in order to do good', 'as a user', 'I want to do good', ->
-	# message = "Feature: #{feature} \n\n\t#{benefit}\n\t#{who}\n\t#{desire}"
+	# Options =
+	#	label
+	#	whitespace
+	#	style
 
-	message = "Feature: #{feature} \n\n".green.underline.bold
-	(message += '\t'+part+'\n' for part in story)
+	return (feature, story..., callback)->
+		#  exp. Feature 'new feature', 'in order to do good', 'as a user', 'I want to do good', ->
 
-	#global[ui.describe](message, callback)
-	mocha.describe message, callback
-	return
+		if 'label' in options
+			feature = 'Feature: '+feature
 
+		if 'whitespace' in options
+			feature = feature+'\n'
+
+		if 'style' in options
+			feature = feature.green.underline.bold
+			
+		message = feature+'\n'
+		(message += '\t'+part+'\n' for part in story)
+
+		mocha.describe message, callback
+
+exports.Feature = createFeature(['label', 'whitespace', 'style'])
 
 args_wash = (args)->
 	title = ''  # allow blank  labels
