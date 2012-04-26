@@ -5,20 +5,23 @@ _.mixin _.str.exports()
 
 {argv} = require 'optimist'
 
+class MochaInterface
+	_describe : 'describe'
+	_it : 'it'
 
-interface =
-	bdd :
-		it : 'it'
-		describe : 'describe'
-	tdd :
-		it : 'test'
-		describe : 'suite'
+	constructor : ->
+		# TDD Interface support
+		argv.ui = argv.ui ? argv.u  # mocha option --ui overwrites -u
+		if argv.ui && (argv.ui == 'tdd' or _.last(argv.ui) == 'tdd')
+			@_describe = 'suite'
+			@_it = 'test'
 
-argv.ui = argv.ui ? argv.u  # mocha option --ui overwrites -u
-if argv.ui && (argv.ui == 'tdd' or _.last(argv.ui) == 'tdd')
-	ui = interface.tdd
-else
-	ui = interface.bdd  # Default
+	describe : ->
+		global[@_describe].apply global, arguments
+	it : ->
+		global[@_it].apply global, arguments
+
+mocha = new MochaInterface
 
 
 exports.Feature = (feature, story..., callback)->
@@ -28,7 +31,8 @@ exports.Feature = (feature, story..., callback)->
 	message = "Feature: #{feature} \n\n".green.underline.bold
 	(message += '\t'+part+'\n' for part in story)
 
-	global[ui.describe](message, callback)
+	#global[ui.describe](message, callback)
+	mocha.describe message, callback
 	return
 
 
@@ -68,12 +72,12 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 
 		fn = ->
 			if type is 'it' and not cb
-				global[ui[type]] label
+				mocha[type] label
 			else
-				global[ui[type]] label, cb
+				mocha[type] label, cb
 
 		if options.padding
-			global[ui.describe] '◦'[options.padding_color], ->
+			mocha.describe '◦'[options.padding_color], ->
 				fn()
 		else
 			fn()
