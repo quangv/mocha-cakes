@@ -40,9 +40,7 @@ Mocha-cakes gives you access to function names
 
 _"Feature", "Scenario"_ that wraps around mocha's `describe()`. 
 
-_"Given", "When", "Then", "And", "But", "Step"_ wraps around mocha's `it()`.
-
-"Given\_", "When\_", "Then\_" (with underscore) also converts to _describe()_
+_"Given", "When", "Then", "And", "But"_ wraps around mocha's `it()`.
 
 Also bonus, "Spec" and "Describe" wraps around mocha's _describe()_ also, that could be used at the start of spec files. It prints out in bolded blue header with `-R Spec`.
 
@@ -82,9 +80,7 @@ Feature "Big Buttons",
     Scenario "On Homepage", ->
 
       Given "I am a new user", ->
-      When_ "I go to homepage", ->
-        Step 'open browser', (done)->
-        Step 'visit page', ->
+      When "I go to homepage", ->
 
       And "I scroll down", ->
       Then "I see big buttons", ->
