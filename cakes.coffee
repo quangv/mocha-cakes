@@ -126,30 +126,14 @@ exports.When = ->
 exports.Then = ->
 	gwt " Then:".yellow+" %s", arguments
 
-exports.Given_ = ->
-	dic 'describe', " Given:".yellow+" %s", arguments, padding:true
-
-exports.When_ = ->
-	dic 'describe', "  When:".yellow+" %s", arguments, padding:true
-
-exports.Then_ = ->
-	dic 'describe', "  Then:".yellow+" %s", arguments, padding:true
-
-
 exports.And = ->
 	gwt "  And".grey+"  %s", arguments, padding_color:'black'
 
 exports.But = ->
 	gwt "  But".grey+"  %s", arguments, padding_color:'black'
 
-
-exports.Step = ->
-	dic 'it', '%s', arguments, pending:true
-
-
 exports.Describe = exports.Spec = ->  # describe() start of spec file
 	dic 'describe', '=== %s ==='.blue, arguments
-
 
 # Add function names to global scope.
 (global[name] = func for name, func of module.exports)
