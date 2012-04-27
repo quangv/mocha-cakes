@@ -21,8 +21,8 @@ Feature "New Feature",
 			Then "it should sound good", ->
 				voice.should.eql 'good'
 
-			And "it should", ->
-			But "it should", ->
+			And "it should do this", ->
+			But "it shouldn't do that", ->
 
 			Describe '/test/describe.spec', ->
 
