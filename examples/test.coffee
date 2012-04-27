@@ -26,9 +26,11 @@ Feature "New Feature",
 
 			Describe '/test/describe.spec', ->
 
-			Given ->
+			Given 'Test', ->
+			When ->
 				it 'should be true', ->
 					true.should.eql true
+			Then 'Dog', ->
 
 
 # Run with

@@ -95,14 +95,32 @@ describeIt = (message, callback)->
 		mocha.it message, callback
 ###
 
+commandNest = (command, message, callback, options)->
+	if 'label' in options
+		label = '◦'
+		if 'labelcolor' in options
+			if 'dark' in options
+				label = label.black
+			else
+				label = label.green
 
-itDescribe = (label, message, callback)->  # routes command to a Describe or an It
+	mocha.describe label, ->
+		if command == 'it'
+			mocha.it message, callback
+		else
+			mocha.describe '', ->
+				mocha.describe message, callback
+
+itDescribe = (label, message, callback, options)->  # routes command to a Describe or an It
 	if typeof message == 'function'  # Message is a callback, so it's a Describe
 		callback = message
-		mocha.describe label, callback
-	else
+		message = label
+		command = 'describe'
+	else  # It's an it
 		message = label+message
-		mocha.it message, callback
+		command = 'it'
+
+	commandNest command, message, callback, options
 
 createGiven = (options)->
 	return (message, callback)->
@@ -110,7 +128,7 @@ createGiven = (options)->
 			label = 'Given: '
 			if 'labelcolor' in options
 				label = label.yellow
-		itDescribe label, message, callback
+		itDescribe label, message, callback, options
 
 			
 
@@ -123,7 +141,7 @@ createWhen = (options)->
 			if 'labelcolor' in options
 				label = label.yellow
 
-		itDescribe label, message, callback
+		itDescribe label, message, callback, options
 
 exports.When = createWhen(['label', 'labelcolor'])
 
@@ -134,7 +152,7 @@ createThen = (options)->
 			if 'labelcolor' in options
 				label = label.yellow
 
-		itDescribe label, message, callback
+		itDescribe label, message, callback, options
 
 exports.Then = createThen(['label', 'labelcolor'])
 
@@ -145,9 +163,9 @@ createAnd = (options)->
 			if 'labelcolor' in options
 				label = label.grey
 
-		itDescribe label, message, callback
+		itDescribe label, message, callback, options
 
-exports.And = createAnd(['label', 'labelcolor'])
+exports.And = createAnd(['label', 'labelcolor', 'dark'])
 
 createBut = (options)->
 	return (message, callback)->
@@ -156,9 +174,9 @@ createBut = (options)->
 			if 'labelcolor' in options
 				label = label.grey
 
-		itDescribe label, message, callback
+		itDescribe label, message, callback, options
 
-exports.But = createBut(['label', 'labelcolor'])
+exports.But = createBut(['label', 'labelcolor', 'dark'])
 
 
 ### Start of Spec/Describe ###
