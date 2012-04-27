@@ -26,6 +26,10 @@ Feature "New Feature",
 
 			Describe '/test/describe.spec', ->
 
+			Given ->
+				it 'should be true', ->
+					true.should.eql true
+
 
 # Run with
 # mocha examples/test.coffee -R spec -r should

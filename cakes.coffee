@@ -80,13 +80,29 @@ createScenario = (options)->
 exports.Scenario = createScenario(['whitespace', 'label', 'style', 'pending'])
 
 
+###
 nestIt = (message, callback, color='green')->  # So nesting works inside of Its
 	mocha.it message, callback  # Not using nesting, forgot what it does.
-	###
+	#mocha.describe '◦'[color], ->
+	#	mocha.it message, callback
+
+
+describeIt = (message, callback)->
+	# If it's not passed a message, it'll be describe.
+	# Have to host it() in a describe() to line up with describes.
+
 	mocha.describe '◦'[color], ->
 		mocha.it message, callback
-	###
+###
 
+
+itDescribe = (label, message, callback)->  # routes command to a Describe or an It
+	if typeof message == 'function'  # Message is a callback, so it's a Describe
+		callback = message
+		mocha.describe label, callback
+	else
+		message = label+message
+		mocha.it message, callback
 
 createGiven = (options)->
 	return (message, callback)->
@@ -94,9 +110,9 @@ createGiven = (options)->
 			label = 'Given: '
 			if 'labelcolor' in options
 				label = label.yellow
-			message = label+message
+		itDescribe label, message, callback
 
-		nestIt message, callback
+			
 
 exports.Given = createGiven(['label', 'labelcolor'])
 
@@ -106,9 +122,8 @@ createWhen = (options)->
 			label = ' When: '
 			if 'labelcolor' in options
 				label = label.yellow
-			message = label+message
 
-		nestIt message, callback
+		itDescribe label, message, callback
 
 exports.When = createWhen(['label', 'labelcolor'])
 
@@ -118,9 +133,8 @@ createThen = (options)->
 			label = ' Then: '
 			if 'labelcolor' in options
 				label = label.yellow
-			message = label+message
 
-		nestIt message, callback
+		itDescribe label, message, callback
 
 exports.Then = createThen(['label', 'labelcolor'])
 
@@ -130,9 +144,8 @@ createAnd = (options)->
 			label = '  And: '
 			if 'labelcolor' in options
 				label = label.grey
-			message = label+message
 
-		nestIt message, callback, 'black'
+		itDescribe label, message, callback
 
 exports.And = createAnd(['label', 'labelcolor'])
 
@@ -142,11 +155,13 @@ createBut = (options)->
 			label = '  But: '
 			if 'labelcolor' in options
 				label = label.grey
-			message = label+message
 
-		nestIt message, callback, 'black'
+		itDescribe label, message, callback
 
 exports.But = createBut(['label', 'labelcolor'])
+
+
+### Start of Spec/Describe ###
 
 createDescribe = (options)->
 	return (message, callback)->
