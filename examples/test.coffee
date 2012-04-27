@@ -30,6 +30,7 @@ Feature "New Feature",
 			When ->
 				it 'should be true', ->
 					true.should.eql true
+
 			Then 'Dog', ->
 
 

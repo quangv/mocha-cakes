@@ -5,7 +5,7 @@ _.mixin _.str.exports()
 
 {argv} = require 'optimist'
 
-class MochaInterface
+class MochaInterface  # Support for Mocha BDD&TDD Interfaces
 	_describe : 'describe'
 	_it : 'it'
 
@@ -22,6 +22,8 @@ class MochaInterface
 		global[@_it].apply global, arguments
 
 mocha = new MochaInterface
+
+### Start of Feature ###
 
 createFeature = (options)->
 
@@ -49,13 +51,14 @@ createFeature = (options)->
 
 exports.Feature = createFeature(['label', 'whitespace', 'style'])
 
+### Start of Scenario ###
+
 createScenario = (options)->
 
 	# Options =
 	#	label
 	#	whitespace
 	#	style
-	#	pending
 
 	return (message, callback)->
 
@@ -65,7 +68,7 @@ createScenario = (options)->
 			message = '\n    '+message
 		if 'style' in options
 			message = message.green
-		if 'pending' in options  # TODO
+		if 'skippable' in options  # TODO
 			###
 			unless arguments[0]
 				arguments = _.toArray(arguments)
@@ -77,7 +80,7 @@ createScenario = (options)->
 
 		mocha.describe message, callback
 
-exports.Scenario = createScenario(['whitespace', 'label', 'style', 'pending'])
+exports.Scenario = createScenario(['whitespace', 'label', 'style'])
 
 
 ### Beginning of GWTab ###
@@ -92,7 +95,15 @@ itDescribe = (label, message, callback, options)->  # routes command to a Descri
 		message = label+message
 		command = 'it'
 
+	[message, callback] = isPending(message, callback)
+
 	describeItNest command, message, callback, options
+
+isPending = (message, cb)->
+	if not cb or cb.toString() == (->).toString()  # If Blank
+		message = '◊ '+_.clean(message.stripColors)+' (pending)'
+		cb = null
+	return [message, cb]
 
 
 describeItNest = (command, message, callback, options)->  # nest commands inside a Describe so mixed describe/its will line up on spec output.
