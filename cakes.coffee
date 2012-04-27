@@ -49,8 +49,8 @@ createFeature = (options)->
 
 exports.Feature = createFeature(['label', 'whitespace', 'style'])
 
-args_wash = (args)->
-	title = ''  # allow blank  labels
+args_wash = (args)-  # allow blank  labels
+	title = ''
 	cb = undefined
 
 	if typeof args[0] == 'string' or typeof args[1] == 'function'
@@ -89,7 +89,7 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 			else
 				mocha[type] label, cb
 
-		if options.padding
+		if options.padding  # NESTING Support
 			mocha.describe '◦'[options.padding_color], ->
 				fn()
 		else
