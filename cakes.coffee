@@ -5,6 +5,10 @@ _.mixin _.str.exports()
 
 {argv} = require 'optimist'
 
+if argv.R == 'doc'  # No colors for doc reporter.
+	colors.mode = 'none'
+	SPEC_REPORTER = 'doc'
+
 class MochaInterface  # Support for Mocha BDD&TDD Interfaces
 	_describe : 'describe'
 	_it : 'it'
@@ -92,6 +96,14 @@ describeItNest = (command, message, callback, options)->  # nest commands inside
 			mocha.it message, callback
 		else
 			mocha.describe '', ->
+				mocha.describe message, callback
+
+if SPEC_REPORTER == 'doc'  # Don't display nest labels for doc output.
+	describeItNest = (command, message, callback, options)->
+		mocha.describe '', ->
+			if command == 'it'
+				mocha.it message, callback
+			else
 				mocha.describe message, callback
 
 nestLabel = (options)->  # returns label of nested describes/its
