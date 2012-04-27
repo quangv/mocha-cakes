@@ -152,6 +152,16 @@ createDescribe = (options)->
 
 exports.Describe = exports.Spec = createDescribe(['label', 'color'])
 
+createSystem = (options)->
+	return (callback)->
+		label = 'System'
+		if 'style' in options
+			label = label.yellow.inverse.italic
+
+		mocha.describe label, callback
+
+exports.System = createSystem(['style'])
+
 
 ###
 gwt = (label, args, options)->
