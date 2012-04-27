@@ -10,6 +10,12 @@ Feature "New Feature",
 			voice = null
 
 			Given "I am a good singing", ->
+				it 'should be true', ->
+					true.should.eql true
+
+				it 'should be true too', ->
+					true.should.eql true
+
 			When "I sing", ->
 				voice = 'good'
 			Then "it should sound good", ->
