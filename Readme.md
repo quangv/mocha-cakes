@@ -5,6 +5,8 @@
 Provides high-level/functional/acceptance test organization lingo, using _'Feature'_, _Stories_, _'Scenarios'_, _'Given/Then/When'_.
 
 # Mocha-Cakes Commands Breakdown
+  
+  Mocha-Cakes extends Mocha, by adding on helpful commands and print-outs for Acceptance Tests. (Given, When, Then, etc.)
 
 ##Acceptance Tests
 
