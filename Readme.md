@@ -14,9 +14,21 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 
 `Feature`, `Scenario`  (maps to _describe_)
 
-`Given`, `When`, `Then` (maps to _it_)
+`Given`, `When`, `Then` (maps to _it_, but if first message argument is ommited, it'll be a _describe_)
 
-`And`, `But` (maps to _it_ as well)
+`And`, `But` (maps to _it_ but if first message argument is ommited, it'll be a _describe_)
+
+### GWTab
+  GWTab commands can map to a describe if the message argument is ommited.
+
+  ```coffeescript
+    Given 'I am at home', ->  # it's an it
+      home.should.eql 'home'
+
+    Given ->  # it's a describe
+      it 'is dark', ->
+        outside.should.eql 'dark'
+  ```
 
 ## Grey-Box, System Tests
 
