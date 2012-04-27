@@ -95,7 +95,7 @@ describeIt = (message, callback)->
 		mocha.it message, callback
 ###
 
-commandNest = (command, message, callback, options)->
+commandNest = (command, message, callback, options)->  # nest commands inside a Describe so mixed describe/its will line up on spec output.
 	if 'label' in options
 		label = '◦'
 		if 'labelcolor' in options
@@ -122,61 +122,30 @@ itDescribe = (label, message, callback, options)->  # routes command to a Descri
 
 	commandNest command, message, callback, options
 
-createGiven = (options)->
+createGWTab = (label, options)->  # Creates Given, When, Then, and, but commands
 	return (message, callback)->
-		if 'label' in options
-			label = 'Given: '
-			if 'labelcolor' in options
-				label = label.yellow
-		itDescribe label, message, callback, options
-
-			
-
-exports.Given = createGiven(['label', 'labelcolor'])
-
-createWhen = (options)->
-	return (message, callback)->
-		if 'label' in options
-			label = ' When: '
-			if 'labelcolor' in options
-				label = label.yellow
+		if label && 'labelcolor' in options
+			label = labelColor label, options
 
 		itDescribe label, message, callback, options
 
-exports.When = createWhen(['label', 'labelcolor'])
+labelColor = (label, options)->
+	if 'dark' in options
+		label = label.grey
+	else
+		label = label.yellow
+	return label
 
-createThen = (options)->
-	return (message, callback)->
-		if 'label' in options
-			label = ' Then: '
-			if 'labelcolor' in options
-				label = label.yellow
 
-		itDescribe label, message, callback, options
+exports.Given = createGWTab('Given: ', ['label', 'labelcolor'])
 
-exports.Then = createThen(['label', 'labelcolor'])
+exports.When = createGWTab(' When: ', ['label', 'labelcolor'])
 
-createAnd = (options)->
-	return (message, callback)->
-		if 'label' in options
-			label = '  And: '
-			if 'labelcolor' in options
-				label = label.grey
+exports.Then = createGWTab(' Then: ', ['label', 'labelcolor'])
 
-		itDescribe label, message, callback, options
+exports.And = createGWTab('  And: ', ['label', 'labelcolor', 'dark'])
 
-exports.And = createAnd(['label', 'labelcolor', 'dark'])
-
-createBut = (options)->
-	return (message, callback)->
-		if 'label' in options
-			label = '  But: '
-			if 'labelcolor' in options
-				label = label.grey
-
-		itDescribe label, message, callback, options
-
-exports.But = createBut(['label', 'labelcolor', 'dark'])
+exports.But = createGWTab('  But: ', ['label', 'labelcolor', 'dark'])
 
 
 ### Start of Spec/Describe ###
