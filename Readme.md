@@ -157,6 +157,19 @@ Install:
     cd my_project
     npm -d install mocha-cakes
 
+# Mocha Reporter Support
+
+Mocha-Cakes was developed with the `-R spec` in mind.
+
+You can use Mocha-Cakes also with the `-R doc` reporter.
+
+All other reporters should function, but have not been tested.
+
+
+If you have any questions, issues or comments, please leave them on [mocha-cakes' github](https://github.com/quangv/mocha-cakes/issues).
+
+Thanks!
+
 ---
 
 \*Special Thanks\* to [TJ Holowaychuk](https://github.com/visionmedia) for Mocha, awesome test framework.
