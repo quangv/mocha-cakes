@@ -172,9 +172,9 @@ exports.Describe = exports.Spec = createDescribe(['label', 'color'])
 
 createSystem = (options)->
 	return (callback)->
-		label = 'System'
+		label = '[system]'
 		if 'style' in options
-			label = label.yellow.inverse.italic
+			label = label.grey.italic
 
 		mocha.describe label, callback
 
