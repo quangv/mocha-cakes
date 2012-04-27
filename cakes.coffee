@@ -199,6 +199,42 @@ createThen = (options)->
 
 exports.Then = createThen(['label', 'labelcolor'])
 
+createAnd = (options)->
+	return (message, callback)->
+		if 'label' in options
+			label = '  And: '
+			if 'labelcolor' in options
+				label = label.grey
+			message = label+message
+
+		mocha.it message, callback
+
+exports.And = createAnd(['label', 'labelcolor'])
+
+createBut = (options)->
+	return (message, callback)->
+		if 'label' in options
+			label = '  But: '
+			if 'labelcolor' in options
+				label = label.grey
+			message = label+message
+
+		mocha.it message, callback
+
+exports.But = createBut(['label', 'labelcolor'])
+
+createDescribe = (options)->
+	return (message, callback)->
+		if 'label' in options
+			message = "=== #{message} ==="
+
+		if 'color' in options
+			message = message.blue
+
+		mocha.describe message, callback
+
+exports.Describe = exports.Spec = createDescribe(['label', 'color'])
+
 
 ###
 exports.Given = ->
@@ -210,7 +246,6 @@ exports.When = ->
 exports.Then = ->
 	gwt " Then:".yellow+" %s", arguments
 
-###
 
 exports.And = ->
 	gwt "  And".grey+"  %s", arguments, padding_color:'black'
@@ -220,6 +255,7 @@ exports.But = ->
 
 exports.Describe = exports.Spec = ->  # describe() start of spec file
 	dic 'describe', '=== %s ==='.blue, arguments
+###
 
 # Add function names to global scope.
 (global[name] = func for name, func of module.exports)

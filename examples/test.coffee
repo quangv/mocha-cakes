@@ -18,6 +18,8 @@ Feature "New Feature",
 			And "it should", ->
 			But "it should", ->
 
+			Describe '/test/describe.spec', ->
+
 
 # Run with
 # mocha examples/test.coffee -R spec -r should
