@@ -80,39 +80,11 @@ createScenario = (options)->
 exports.Scenario = createScenario(['whitespace', 'label', 'style', 'pending'])
 
 
-###
-nestIt = (message, callback, color='green')->  # So nesting works inside of Its
-	mocha.it message, callback  # Not using nesting, forgot what it does.
-	#mocha.describe '◦'[color], ->
-	#	mocha.it message, callback
-
-
-describeIt = (message, callback)->
-	# If it's not passed a message, it'll be describe.
-	# Have to host it() in a describe() to line up with describes.
-
-	mocha.describe '◦'[color], ->
-		mocha.it message, callback
-###
-
-commandNest = (command, message, callback, options)->  # nest commands inside a Describe so mixed describe/its will line up on spec output.
-	if 'label' in options
-		label = '◦'
-		if 'labelcolor' in options
-			if 'dark' in options
-				label = label.black
-			else
-				label = label.green
-
-	mocha.describe label, ->
-		if command == 'it'
-			mocha.it message, callback
-		else
-			mocha.describe '', ->
-				mocha.describe message, callback
+### Beginning of GWTab ###
 
 itDescribe = (label, message, callback, options)->  # routes command to a Describe or an It
-	if typeof message == 'function'  # Message is a callback, so it's a Describe
+	# If it's not passed a message, it'll be describe.
+	if typeof message == 'function'
 		callback = message
 		message = label
 		command = 'describe'
@@ -120,20 +92,46 @@ itDescribe = (label, message, callback, options)->  # routes command to a Descri
 		message = label+message
 		command = 'it'
 
-	commandNest command, message, callback, options
+	describeItNest command, message, callback, options
+
+
+describeItNest = (command, message, callback, options)->  # nest commands inside a Describe so mixed describe/its will line up on spec output.
+	label = nestLabel options  # get pretty labels for nest.
+	mocha.describe label, ->
+		if command == 'it'
+			mocha.it message, callback
+		else
+			mocha.describe '', ->
+				mocha.describe message, callback
+
+nestLabel = (options)->  # returns label of nested describes/its
+	label = ''
+	if 'label' in options
+		label = '◦'
+		if 'labelcolor' in options
+			if 'dark' in options
+				label = label.black
+			else
+				label = label.green
+	return label
+
+
 
 createGWTab = (label, options)->  # Creates Given, When, Then, and, but commands
 	return (message, callback)->
-		if label && 'labelcolor' in options
-			label = labelColor label, options
-
+		label = gwtLabel label, options
 		itDescribe label, message, callback, options
 
-labelColor = (label, options)->
-	if 'dark' in options
-		label = label.grey
+gwtLabel = (label, options)->  # Returns pretty GWTab labels
+	if 'label' in options
+		if label && ('labelcolor' in options)
+			if 'dark' in options
+				label = label.grey
+			else
+				label = label.yellow
 	else
-		label = label.yellow
+		label = ''
+
 	return label
 
 
@@ -147,7 +145,7 @@ exports.And = createGWTab('  And: ', ['label', 'labelcolor', 'dark'])
 
 exports.But = createGWTab('  But: ', ['label', 'labelcolor', 'dark'])
 
-
+### End of GWTab ###
 ### Start of Spec/Describe ###
 
 createDescribe = (options)->
