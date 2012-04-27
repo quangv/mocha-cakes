@@ -127,22 +127,6 @@ createScenario = (options)->
 
 exports.Scenario = createScenario(['whitespace', 'label', 'style', 'pending'])
 
-###
-exports.Scenario = ->
-	unless arguments[0]
-		arguments = _.toArray(arguments)
-		arguments.shift()  # removes false
-		arguments[1] = ->  # removes call body
-		arguments[0] = ('(skipped) '+arguments[0]).yellow.bold
-
-	dic 'describe', "\n    Scenario: %s".green, arguments
-###
-
-###
-exports.Background = (action, callback)->
-	depict action.magenta, arguments
-###
-
 gwt = (label, args, options)->
 	[title, cb] = args_wash args
 
@@ -150,16 +134,6 @@ gwt = (label, args, options)->
 		padding:true
 		pending:true
 	, options
-
-	###
-	#log 'gwt', title, cb.length
-	unless cb.length >= 1
-		callback = (done)->
-			cb()
-			done()
-	else
-		callback = cb
-	###
 
 	dic 'it', label, [title,cb], options
 
