@@ -101,6 +101,37 @@ exports.Background = (action, callback)->
 	depict action.magenta, arguments
 ###
 
+createScenario = (options)->
+
+	# Options =
+	#	label
+	#	whitespace
+	#	style
+	#	pending
+
+	return (message, callback)->
+
+		if 'label' in options
+			message = 'Scenario: '+message
+		if 'whitespace' in options
+			message = '\n    '+message
+		if 'style' in options
+			message = message.green
+		if 'pending' in options  # TODO
+			###
+			unless arguments[0]
+				arguments = _.toArray(arguments)
+				arguments.shift()  # removes false
+				arguments[1] = ->  # removes call body
+				arguments[0] = ('(skipped) '+arguments[0]).yellow.bold
+			###
+			
+
+		mocha.describe message, callback
+
+exports.Scenario = createScenario(['whitespace', 'label', 'style', 'pending'])
+
+###
 exports.Scenario = ->
 	unless arguments[0]
 		arguments = _.toArray(arguments)
@@ -109,6 +140,7 @@ exports.Scenario = ->
 		arguments[0] = ('(skipped) '+arguments[0]).yellow.bold
 
 	dic 'describe', "\n    Scenario: %s".green, arguments
+###
 
 gwt = (label, args, options)->
 	[title, cb] = args_wash args
