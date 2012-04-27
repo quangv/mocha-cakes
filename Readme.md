@@ -9,6 +9,7 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 Feature, Scenario  (maps to _describe_)
 
 Given, When, Then (maps to _it_)
+
 And, But (maps to _it_ as well)
 
 System (just calls _describe_ with System label, useful for testing (grey box) system resources, database, not directly observable by Customer etc.)
@@ -77,7 +78,21 @@ So the above would output something like:
 
 ```
 
-# Documentation
+## How to Use
+
+Mocha-Cakes provides GWT commands to mocha, and pretty prints it.
+
+To use just:
+
+1. require 'mocha-cakes'
+
+Then you will have access to the mocha-cakes commands _Feature, Scenario, Given, When, Then, etc._
+
+Also to _see_ the pretty output, use the _spec_ reporter
+
+`mocha -R spec -r mocha-cakes acceptance_tests.coffee`
+
+Note: You can use mocha-cakes with plain javascript.
 
 ## Features
 
