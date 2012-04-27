@@ -4,6 +4,19 @@
 
 Provides high-level/functional/acceptance test organization lingo, using _'Feature'_, _Stories_, _'Scenarios'_, _'Given/Then/When'_.
 
+# Commands for Acceptance Tests
+
+Feature, Scenario  (maps to _describe_)
+
+Given, When, Then (maps to _it_)
+And, But (maps to _it_ as well)
+
+System (just calls _describe_ with System label, useful for testing (grey box) system resources, database, not directly observable by Customer etc.)
+
+# Commands for Specs (Helpers)
+
+Describe, Spec (maps to _describe_ used for things like filenames)
+
 # Example
 
 _Coffee-Script: test.coffee_ 
