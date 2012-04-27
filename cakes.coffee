@@ -96,10 +96,6 @@ dic = (type, label, args, options={})->  # Dictate to describe() or it()
 			fn()
 
 
-###
-exports.Background = (action, callback)->
-	depict action.magenta, arguments
-###
 
 createScenario = (options)->
 
@@ -142,6 +138,11 @@ exports.Scenario = ->
 	dic 'describe', "\n    Scenario: %s".green, arguments
 ###
 
+###
+exports.Background = (action, callback)->
+	depict action.magenta, arguments
+###
+
 gwt = (label, args, options)->
 	[title, cb] = args_wash args
 
@@ -162,6 +163,44 @@ gwt = (label, args, options)->
 
 	dic 'it', label, [title,cb], options
 
+createGiven = (options)->
+	return (message, callback)->
+		if 'label' in options
+			label = 'Given: '
+			if 'labelcolor' in options
+				label = label.yellow
+			message = label+message
+
+		mocha.it message, callback
+
+exports.Given = createGiven(['label', 'labelcolor'])
+
+createWhen = (options)->
+	return (message, callback)->
+		if 'label' in options
+			label = ' When: '
+			if 'labelcolor' in options
+				label = label.yellow
+			message = label+message
+
+		mocha.it message, callback
+
+exports.When = createWhen(['label', 'labelcolor'])
+
+createThen = (options)->
+	return (message, callback)->
+		if 'label' in options
+			label = ' Then: '
+			if 'labelcolor' in options
+				label = label.yellow
+			message = label+message
+
+		mocha.it message, callback
+
+exports.Then = createThen(['label', 'labelcolor'])
+
+
+###
 exports.Given = ->
 	gwt "Given:".yellow+" %s", arguments
 
@@ -170,6 +209,8 @@ exports.When = ->
 
 exports.Then = ->
 	gwt " Then:".yellow+" %s", arguments
+
+###
 
 exports.And = ->
 	gwt "  And".grey+"  %s", arguments, padding_color:'black'
