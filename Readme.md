@@ -10,19 +10,19 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 
 ##Acceptance Tests
 
-Feature, Scenario  (maps to _describe_)
+`Feature`, `Scenario`  (maps to _describe_)
 
-Given, When, Then (maps to _it_)
+`Given`, `When`, `Then` (maps to _it_)
 
-And, But (maps to _it_ as well)
+`And`, `But` (maps to _it_ as well)
 
 ## Grey-Box, System Tests
 
-System (just calls _describe_ with System label, useful for testing (grey box) system resources, database, not directly observable by Customer etc.)
+`System` (just calls _describe_ with System label, useful for testing (grey box) system resources, database, not directly observable by Customer etc.)
 
 ## Pretty Commands for Specs/Unit Tests
 
-Describe, Spec (maps to _describe_ used for things like filenames)
+`Describe`, `Spec` (maps to _describe_ used for things like filenames)
 
 # Example
 
