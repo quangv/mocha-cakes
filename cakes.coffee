@@ -49,54 +49,6 @@ createFeature = (options)->
 
 exports.Feature = createFeature(['label', 'whitespace', 'style'])
 
-args_wash = (args)-  # allow blank  labels
-	title = ''
-	cb = undefined
-
-	if typeof args[0] == 'string' or typeof args[1] == 'function'
-		title = args[0]
-		cb = args[1]
-	else if typeof args[0] == 'function'
-		cb = args[0]
-
-	return [title, cb]
-
-dic = (type, label, args, options={})->  # Dictate to describe() or it()
-
-	options = _.extend
-		padding:false
-		padding_color:'green'
-	, options
-
-	if type in ['describe', 'it']
-
-		[title, cb] = args_wash args
-
-		if args.length == 1 and typeof args[0] == 'function'  # allow blank label
-			label = ''
-		else
-			label = label.replace('%s', title)
-
-		if options.pending
-			if not cb or cb.toString() == (->).toString()  # If Blank
-				label = '◊ '+_.clean(label.stripColors)+' (pending)'
-				cb = null
-				
-
-		fn = ->
-			if type is 'it' and not cb
-				mocha[type] label
-			else
-				mocha[type] label, cb
-
-		if options.padding  # NESTING Support
-			mocha.describe '◦'[options.padding_color], ->
-				fn()
-		else
-			fn()
-
-
-
 createScenario = (options)->
 
 	# Options =
@@ -127,15 +79,6 @@ createScenario = (options)->
 
 exports.Scenario = createScenario(['whitespace', 'label', 'style', 'pending'])
 
-gwt = (label, args, options)->
-	[title, cb] = args_wash args
-
-	options = _.extend
-		padding:true
-		pending:true
-	, options
-
-	dic 'it', label, [title,cb], options
 
 createGiven = (options)->
 	return (message, callback)->
@@ -211,6 +154,63 @@ exports.Describe = exports.Spec = createDescribe(['label', 'color'])
 
 
 ###
+gwt = (label, args, options)->
+	[title, cb] = args_wash args
+
+	options = _.extend
+		padding:true
+		pending:true
+	, options
+
+	dic 'it', label, [title,cb], options
+
+args_wash = (args)-  # allow blank  labels
+	title = ''
+	cb = undefined
+
+	if typeof args[0] == 'string' or typeof args[1] == 'function'
+		title = args[0]
+		cb = args[1]
+	else if typeof args[0] == 'function'
+		cb = args[0]
+
+	return [title, cb]
+
+dic = (type, label, args, options={})->  # Dictate to describe() or it()
+
+	options = _.extend
+		padding:false
+		padding_color:'green'
+	, options
+
+	if type in ['describe', 'it']
+
+		[title, cb] = args_wash args
+
+		if args.length == 1 and typeof args[0] == 'function'  # allow blank label
+			label = ''
+		else
+			label = label.replace('%s', title)
+
+		if options.pending
+			if not cb or cb.toString() == (->).toString()  # If Blank
+				label = '◊ '+_.clean(label.stripColors)+' (pending)'
+				cb = null
+				
+
+		fn = ->
+			if type is 'it' and not cb
+				mocha[type] label
+			else
+				mocha[type] label, cb
+
+		if options.padding  # NESTING Support
+			mocha.describe '◦'[options.padding_color], ->
+				fn()
+		else
+			fn()
+
+
 exports.Given = ->
 	gwt "Given:".yellow+" %s", arguments
 
