@@ -85,27 +85,6 @@ exports.Scenario = createScenario(['whitespace', 'label', 'style'])
 
 ### Beginning of GWTab ###
 
-itDescribe = (label, message, callback, options)->  # routes command to a Describe or an It
-	# If it's not passed a message, it'll be describe.
-	if typeof message == 'function'
-		callback = message
-		message = label
-		command = 'describe'
-	else  # It's an it
-		message = label+message
-		command = 'it'
-
-	[message, callback] = isPending(message, callback)
-
-	describeItNest command, message, callback, options
-
-isPending = (message, cb)->
-	if not cb or cb.toString() == (->).toString()  # If Blank
-		message = '◊ '+_.clean(message.stripColors)+' (pending)'
-		cb = null
-	return [message, cb]
-
-
 describeItNest = (command, message, callback, options)->  # nest commands inside a Describe so mixed describe/its will line up on spec output.
 	label = nestLabel options  # get pretty labels for nest.
 	mocha.describe label, ->
@@ -126,12 +105,32 @@ nestLabel = (options)->  # returns label of nested describes/its
 				label = label.green
 	return label
 
+isPending = (command, message, cb)->  # Return Pending message.
+	if not cb or cb.toString() == (->).toString()  # If Blank
+		command = 'it'  # Convert pendings to It
+		message = '◊ '+_.clean(message.stripColors)+' (pending)'
+		cb = null
+	return [command, message, cb]
+
+gwtItDescribe = (label, message, callback, options)->  # routes command to a Describe or an It
+	# If it's not passed a message, it'll be describe.
+	if typeof message == 'function'
+		callback = message
+		message = label
+		command = 'describe'
+	else  # It's an it
+		message = label+message
+		command = 'it'
+
+	[command, message, callback] = isPending(command, message, callback)
+
+	describeItNest command, message, callback, options
 
 
 createGWTab = (label, options)->  # Creates Given, When, Then, and, but commands
 	return (message, callback)->
 		label = gwtLabel label, options
-		itDescribe label, message, callback, options
+		gwtItDescribe label, message, callback, options
 
 gwtLabel = (label, options)->  # Returns pretty GWTab labels
 	if 'label' in options

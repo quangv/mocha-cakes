@@ -27,11 +27,19 @@ Feature "New Feature",
 			Describe '/test/describe.spec', ->
 
 			Given 'Test', ->
+				true.should.eql true
+
 			When ->
 				it 'should be true', ->
 					true.should.eql true
+			Then 'Yup', ->
+				true.should.eql true
 
-			Then 'Dog', ->
+			# Pendings
+
+			Given "It's Pending", ->
+			When ->
+			Then ->
 
 
 # Run with
