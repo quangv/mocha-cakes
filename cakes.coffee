@@ -80,6 +80,14 @@ createScenario = (options)->
 exports.Scenario = createScenario(['whitespace', 'label', 'style', 'pending'])
 
 
+nestIt = (message, callback, color='green')->  # So nesting works inside of Its
+	mocha.it message, callback  # Not using nesting, forgot what it does.
+	###
+	mocha.describe '◦'[color], ->
+		mocha.it message, callback
+	###
+
+
 createGiven = (options)->
 	return (message, callback)->
 		if 'label' in options
@@ -88,7 +96,7 @@ createGiven = (options)->
 				label = label.yellow
 			message = label+message
 
-		mocha.it message, callback
+		nestIt message, callback
 
 exports.Given = createGiven(['label', 'labelcolor'])
 
@@ -100,7 +108,7 @@ createWhen = (options)->
 				label = label.yellow
 			message = label+message
 
-		mocha.it message, callback
+		nestIt message, callback
 
 exports.When = createWhen(['label', 'labelcolor'])
 
@@ -112,7 +120,7 @@ createThen = (options)->
 				label = label.yellow
 			message = label+message
 
-		mocha.it message, callback
+		nestIt message, callback
 
 exports.Then = createThen(['label', 'labelcolor'])
 
@@ -124,7 +132,7 @@ createAnd = (options)->
 				label = label.grey
 			message = label+message
 
-		mocha.it message, callback
+		nestIt message, callback, 'black'
 
 exports.And = createAnd(['label', 'labelcolor'])
 
@@ -136,7 +144,7 @@ createBut = (options)->
 				label = label.grey
 			message = label+message
 
-		mocha.it message, callback
+		nestIt message, callback, 'black'
 
 exports.But = createBut(['label', 'labelcolor'])
 
