@@ -182,7 +182,7 @@ createSystem = (options)->
 	return (callback)->
 		label = '[system]'
 		if 'style' in options
-			label = label.grey.italic
+			label = label.black.italic
 
 		mocha.describe label, callback
 
