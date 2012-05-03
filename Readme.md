@@ -32,7 +32,7 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 
 ## Grey-Box, System Tests
 
-`System` (just calls _describe_ with System label, useful for testing (grey box) system resources, database, not directly observable by Customer etc.)
+`System` (if it has a message it'll be an  _it_, if not it'll be a _describe_ with System label, useful for testing (grey box) system resources, database, not directly observable by Customer etc.)
 
 ## Pretty Commands for Specs/Unit Tests
 

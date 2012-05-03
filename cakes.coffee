@@ -179,12 +179,19 @@ createDescribe = (options)->
 exports.Describe = exports.Spec = createDescribe(['label', 'color'])
 
 createSystem = (options)->
-	return (callback)->
+	return (msg, callback)->
 		label = '[system]'
 		if 'style' in options
 			label = label.black.italic
 
-		mocha.describe label, callback
+		# If it has a message, it's an IT, or else it's a describe.
+		if typeof msg is 'function'
+			callback = msg
+			mocha.describe label, callback
+		else
+			label += ' '+msg
+			mocha.it label, callback
+
 
 exports.System = createSystem(['style'])
 
