@@ -34,9 +34,24 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 
 `System` (if it has a message it'll be an  _it_, if not it'll be a _describe_ with System label, useful for testing (grey box) system resources, database, not directly observable by Customer etc.)
 
+```coffeescript
+Given ->
+  System 'Logged Out', ->
+
+Then ->
+  System ->
+    it 'should log in', ->
+```
+
 ## Pretty Commands for Specs/Unit Tests
 
-`Describe`, `Spec` (maps to _describe_ used for things like filenames)
+`Describe` & `Spec` (are the same, maps to _describe_ used for things like filenames)
+
+```coffeescript
+Describe 'lib/file.coffee'  # filename
+  describe '+copy()', ->
+    it 'should copy files...', ->
+```
 
 # Example
 
