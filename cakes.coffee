@@ -192,7 +192,7 @@ createSystem = (options)->
 		else
 			[command, msg, callback] = isPending('it', msg, callback)
 
-			if 'style' in options
+			if 'style' in options and callback is null  # isPending
 				msg = msg.cyan
 
 		label += ' '+msg
