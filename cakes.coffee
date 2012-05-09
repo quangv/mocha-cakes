@@ -185,12 +185,18 @@ createSystem = (options)->
 			label = label.black.italic
 
 		# If it has a message, it's an IT, or else it's a describe.
-		if typeof msg is 'function'
+		if typeof msg is 'function'  # No msg, so it's a describe
 			callback = msg
-			mocha.describe label, callback
+			msg = ''
+			[command, msg, callback] = isPending('describe', msg, callback)
 		else
-			label += ' '+msg
-			mocha.it label, callback
+			[command, msg, callback] = isPending('it', msg, callback)
+
+			if 'style' in options
+				msg = msg.cyan
+
+		label += ' '+msg
+		mocha[command] label, callback
 
 
 exports.System = createSystem(['style'])
