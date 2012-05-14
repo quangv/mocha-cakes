@@ -102,7 +102,7 @@ nestLabel = (options)->  # returns label of nested describes/its
 	label = ''
 	if 'label' in options
 		label = '◦'
-		if 'labelcolor' in options
+		if 'style' in options
 			if 'dark' in options
 				label = label.black
 			else
@@ -142,7 +142,7 @@ createGWTab = (label, options)->  # Creates Given, When, Then, and, but commands
 
 gwtLabel = (label, options)->  # Returns pretty GWTab labels
 	if 'label' in options
-		if label && ('labelcolor' in options)
+		if label && ('style' in options)
 			if 'dark' in options
 				label = label.grey
 			else
@@ -153,15 +153,15 @@ gwtLabel = (label, options)->  # Returns pretty GWTab labels
 	return label
 
 
-exports.Given = createGWTab('Given: ', ['label', 'labelcolor'])
+exports.Given = createGWTab('Given: ', ['label', 'style'])
 
-exports.When = createGWTab(' When: ', ['label', 'labelcolor'])
+exports.When = createGWTab(' When: ', ['label', 'style'])
 
-exports.Then = createGWTab(' Then: ', ['label', 'labelcolor'])
+exports.Then = createGWTab(' Then: ', ['label', 'style'])
 
-exports.And = createGWTab('  And: ', ['label', 'labelcolor', 'dark'])
+exports.And = createGWTab('  And: ', ['label', 'style', 'dark'])
 
-exports.But = createGWTab('  But: ', ['label', 'labelcolor', 'dark'])
+exports.But = createGWTab('  But: ', ['label', 'style', 'dark'])
 
 ### End of GWTab ###
 ### Start of Spec/Describe ###
@@ -171,16 +171,19 @@ createDescribe = (options)->
 		if 'label' in options
 			message = "=== #{message} ==="
 
-		if 'color' in options
+		if 'style' in options
 			message = message.blue
 
 		mocha.describe message, callback
 
-exports.Describe = exports.Spec = createDescribe(['label', 'color'])
+exports.Describe = exports.Spec = createDescribe(['label', 'style'])
 
 createSystem = (options)->
 	return (msg, callback)->
-		label = '[system]'
+		label = ''
+		if 'label' in options
+			label = '[system]'
+
 		if 'style' in options
 			label = label.black.italic
 
@@ -199,7 +202,7 @@ createSystem = (options)->
 		mocha[command] label, callback
 
 
-exports.System = createSystem(['style'])
+exports.System = createSystem(['label', 'style'])
 
 # Add function names to global scope.
 (global[name] = func for name, func of module.exports)
