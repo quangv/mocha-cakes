@@ -3,6 +3,7 @@
   ,	"version" : "0.6.3"
   ,	"author" : "Quang Van <quangvvv@gmail.com>"
   ,	"homepage" : "https://github.com/quangv/mocha-cakes"
+  ,	"repository" : { "type": "git", "url": "git://github.com/quangv/mocha-cakes.git"}
   ,	"dependencies" : {  "coffee-script" : "*"
                        ,"colors" : "*"
                        ,"underscore" : "*"    
