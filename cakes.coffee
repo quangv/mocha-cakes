@@ -145,6 +145,8 @@ gwtLabel = (label, options)->  # Returns pretty GWTab labels
 		if label && ('style' in options)
 			if 'dark' in options
 				label = label.grey
+			else if 'white' in options
+				label = label.white
 			else
 				label = label.yellow
 	else
@@ -162,6 +164,8 @@ exports.Then = createGWTab(' Then: ', ['label', 'style'])
 exports.And = createGWTab('  And: ', ['label', 'style', 'dark'])
 
 exports.But = createGWTab('  But: ', ['label', 'style', 'dark'])
+
+exports.I = createGWTab('  I ', ['label', 'style', 'white'])
 
 ### End of GWTab ###
 ### Start of Spec/Describe ###
