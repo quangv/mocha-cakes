@@ -16,7 +16,7 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 
 `Given`, `When`, `Then` (maps to _it_, but if first message argument is ommited, it'll be a _describe_)
 
-`And`, `But` (maps to _it_ but if first message argument is ommited, it'll be a _describe_)
+`And`, `But`, `I` (maps to _it_ but if first message argument is ommited, it'll be a _describe_)
 
 ### GWTab
   GWTab commands can map to a describe if the message argument is ommited.
@@ -51,6 +51,19 @@ Then ->
 Describe 'lib/file.coffee'  # filename
   describe '+copy()', ->
     it 'should copy files...', ->
+```
+
+## Custom
+
+Mocha-Cakes 0.7 added the `I` command, to do things like:
+
+```
+Given ->
+  I 'have a test', ->
+  And 'I have another', ->
+Then ->
+  I 'should be good', ->
+  But 'make sure I am also', ->
 ```
 
 # Example
