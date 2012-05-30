@@ -169,6 +169,8 @@ Feature "Big Buttons",
 
       Spec 'test.spec.coffee', ->
 
+    Scenario false, 'Skip Me', ->
+
 ```
 
 _\* Remember, they're all either `describe()`'s or `it()`_
