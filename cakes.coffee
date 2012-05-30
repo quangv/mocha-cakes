@@ -66,23 +66,26 @@ createScenario = (options)->
 
 	return (message, callback)->
 
+		if message == false  # First arg is false, skip
+			message = callback
+			return skipScenario message, options
+
 		if 'label' in options
 			message = 'Scenario: '+message
 		if 'whitespace' in options
 			message = '\n    '+message
 		if 'style' in options
 			message = message.green
-		if 'skippable' in options  # TODO
-			###
-			unless arguments[0]
-				arguments = _.toArray(arguments)
-				arguments.shift()  # removes false
-				arguments[1] = ->  # removes call body
-				arguments[0] = ('(skipped) '+arguments[0]).yellow.bold
-			###
-			
 
 		mocha.describe message, callback
+
+skipScenario = (message, options)->
+	if 'label' in options
+		message = '(skipped) ' + message
+	if 'style' in options
+		message = message.yellow.bold
+
+	mocha.describe message, ->
 
 exports.Scenario = createScenario(['whitespace', 'label', 'style'])
 
