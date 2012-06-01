@@ -82,6 +82,8 @@ createScenario = (options)->
 skipScenario = (message, options)->
 	if 'label' in options
 		message = '(skipped) ' + message
+	if 'whitespace' in options
+		message = '\n    '+message
 	if 'style' in options
 		message = message.yellow.bold
 
