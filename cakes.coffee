@@ -208,7 +208,7 @@ createSystem = (options)->
 				msg = msg.cyan
 
 		label += ' '+msg
-		mocha[command] label, callback
+		describeItNest command, label, callback, options
 
 
 exports.System = createSystem(['label', 'style'])
