@@ -24,6 +24,8 @@ Mocha-Cakes gives you the following methods
 `System`
 `Describe`
 
+You can use these commands to describe your tests & specs, as well as mocha's BDD commands `describe`, `it`, `before`, `beforeEach`, `after`, `afterEach` OR mocha's TDD commands `suite`, `test`, `setup`, `teardown`, `suiteSetup`, `suiteTeardown`
+
 # Mocha-Cakes Commands Breakdown
   
   Mocha-Cakes extends Mocha, by adding on helpful commands and print-outs for Acceptance Tests. (Given, When, Then, etc.)
