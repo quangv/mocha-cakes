@@ -8,7 +8,7 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 
 # Mocha-Cakes Commands
 
-Mocha-Cakes gives you the following methods
+Mocha-Cakes adds following commands
 
 `Feature`
 `Scenario`
@@ -202,7 +202,7 @@ Also you could still mix-in regular mocha syntax
 ```
 Feature "Mix & Match" ->
   Scenario 'Mix-in Mocha', ->
-    Given "I'm using Cakes", ->
+    Given "I'm using Mocha-Cakes", ->
     Then ->
       describe 'Also using regular mocha', ->
         I 'should be able to do this', ->
