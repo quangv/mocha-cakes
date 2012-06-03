@@ -51,6 +51,12 @@ Feature "Mix & Match", ->
 		it 'should work too', ->
 		  true.should.eql true
 
+Feature "Async tests with Mocha-Cakes", ->
+	Given "I want to test async code", ->
+	When "I pass 'done' to GWT commands", ->
+	Then "It should wait for 'done' to be done.", (done)->
+		done()
+
 # Run with
 # mocha examples/test.coffee -R spec -r should
 #
