@@ -6,6 +6,24 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 
 ![Mocha-Cakes Pretty Output](http://i.imgur.com/cKUO8.png)
 
+# Mocha-Cakes Commands
+
+Mocha-Cakes gives you the following methods
+
+`Feature`
+`Scenario`
+
+`Given`
+`When`
+`Then`
+
+`And`
+`But`
+`I`
+
+`System`
+`Describe`
+
 # Mocha-Cakes Commands Breakdown
   
   Mocha-Cakes extends Mocha, by adding on helpful commands and print-outs for Acceptance Tests. (Given, When, Then, etc.)
