@@ -107,8 +107,7 @@ Feature "New Feature",
       When "I sing", ->
         voice = 'good'
       Then "it should sound good", ->
-        it 'sound good', ->
-          voice.should.eql 'good'
+        voice.should.eql 'good'
 
 ```
  
@@ -182,7 +181,7 @@ Feature "Big Buttons",
       Then "I see big buttons", ->
       But "no small text", ->
 
-      Given ->  # Previous
+      Given ->  # Describe
       When "I scroll down more", ->
       And "I reach end of page", ->
       Then "all I see is big buttons", ->
@@ -209,6 +208,16 @@ Feature "Mix & Match" ->
           true.should.be true
         it 'should work too', ->
           true.should.be true
+```
+
+Note you can also test asynchronous code with Mocha-Cakes passing a callback argument to any GWTabi command. (`done` for example)
+
+```
+Feature "Async tests with Mocha-Cakes", ->
+  Given "I want to test async code", ->
+  When "I pass 'done' to GWT commands", ->
+  Then "It should wait for 'done' to be done.", (done)->
+    done()
 ```
 
 ## Reference
