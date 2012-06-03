@@ -121,9 +121,9 @@ Mocha-cakes gives you access to function names
 
 _"Feature", "Scenario"_ that wraps around mocha's `describe()`. 
 
-_"Given", "When", "Then", "And", "But"_ wraps around mocha's `it()`.
+_"Given", "When", "Then", "And", "But"_ wraps around mocha's `it()`. (If first argument is omitted `Given ->` it'll be a `describe()`)
 
-Also bonus, "Describe" wraps around mocha's _describe()_ also, that could be used at the start of spec files. It prints out in bolded blue header with `-R Spec`.
+Also bonus, "Describe" wraps around mocha's _describe()_ also, that could be used at the start of spec files. It prints out in bolded blue header with `-R Spec`. And `System()` is a _describe_ or _it_ depending on if first argument is a string or callback.
 
 So the above would output something like:
 
