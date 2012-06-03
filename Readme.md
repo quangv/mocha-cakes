@@ -8,7 +8,7 @@ Provides high-level/functional/acceptance test organization lingo, using _'Featu
 
 # Mocha-Cakes Commands
 
-Mocha-Cakes adds following commands
+Mocha-Cakes adds the following commands:
 
 `Feature`
 `Scenario`
