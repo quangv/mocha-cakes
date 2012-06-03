@@ -41,6 +41,15 @@ Feature "New Feature",
 			When ->
 			Then ->
 
+Feature "Mix & Match", ->
+  Scenario 'Mix-in Mocha', ->
+	Given "I'm using Cakes", ->
+	Then ->
+	  describe 'Also using regular mocha', ->
+		I 'should be able to do this', ->
+		  true.should.eql true
+		it 'should work too', ->
+		  true.should.eql true
 
 # Run with
 # mocha examples/test.coffee -R spec -r should

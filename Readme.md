@@ -175,6 +175,22 @@ Feature "Big Buttons",
 
 _\* Remember, they're all either `describe()`'s or `it()`_
 
+## Mix & Match
+
+Also you could still mix-in regular mocha syntax
+
+```
+Feature "Mix & Match" ->
+  Scenario 'Mix-in Mocha', ->
+    Given "I'm using Cakes", ->
+    Then ->
+      describe 'Also using regular mocha', ->
+        I 'should be able to do this', ->
+          true.should.be true
+        it 'should work too', ->
+          true.should.be true
+```
+
 ## Reference
 
 [The WHY behind TDD/BDD and the HOW with RSpec](http://www.slideshare.net/bmabey/the-why-behind-tddbdd-and-the-how-with-rspec)

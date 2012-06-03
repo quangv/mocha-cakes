@@ -49,7 +49,10 @@ createFeature = (options)->
 			feature = feature.green.underline.bold
 			
 		message = feature+'\n'
-		(message += '\t'+part+'\n' for part in story)
+		unless typeof story[0] is 'function'
+			(message += '\t'+part+'\n' for part in story)
+		else
+			callback = story[0]
 
 		mocha.describe message, callback
 
