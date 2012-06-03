@@ -45,7 +45,7 @@ Then ->
 
 ## Pretty Commands for Specs/Unit Tests
 
-`Describe` & `Spec` (are the same, maps to _describe_ used for things like filenames)
+`Describe` (maps to _describe_ used for things like filenames)
 
 ```coffeescript
 Describe 'lib/file.coffee'  # filename
@@ -104,7 +104,7 @@ _"Feature", "Scenario"_ that wraps around mocha's `describe()`.
 
 _"Given", "When", "Then", "And", "But"_ wraps around mocha's `it()`.
 
-Also bonus, "Spec" and "Describe" wraps around mocha's _describe()_ also, that could be used at the start of spec files. It prints out in bolded blue header with `-R Spec`.
+Also bonus, "Describe" wraps around mocha's _describe()_ also, that could be used at the start of spec files. It prints out in bolded blue header with `-R Spec`.
 
 So the above would output something like:
 
@@ -167,7 +167,7 @@ Feature "Big Buttons",
       And "I reach end of page", ->
       Then "all I see is big buttons", ->
 
-      Spec 'test.spec.coffee', ->
+      Describe 'test.spec.coffee', ->
 
     Scenario false, 'Skip Me', ->
 

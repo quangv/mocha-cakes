@@ -176,7 +176,7 @@ exports.But = createGWTab('  But: ', ['label', 'style', 'dark'])
 exports.I = createGWTab('  I ', ['label', 'style', 'white'])
 
 ### End of GWTab ###
-### Start of Spec/Describe ###
+### Start of Describe ###
 
 createDescribe = (options)->
 	return (message, callback)->
@@ -188,7 +188,7 @@ createDescribe = (options)->
 
 		mocha.describe message, callback
 
-exports.Describe = exports.Spec = createDescribe(['label', 'style'])
+exports.Describe = createDescribe(['label', 'style'])
 
 createSystem = (options)->
 	return (msg, callback)->
