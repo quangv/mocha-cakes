@@ -113,7 +113,7 @@ Feature "New Feature",
  
 Run this test using mocha command:
 
-`mocha test.coffee -R spec -r should`
+`mocha test.coffee -R spec -r should --compilers coffee:coffee-script`
 
 # What's going on?
 
@@ -157,7 +157,7 @@ Then you will have access to the mocha-cakes commands _Feature, Scenario, Given,
 
 Also to _see_ the pretty output, use the _spec_ reporter
 
-`mocha -R spec -r mocha-cakes acceptance_tests.coffee`
+`mocha acceptance_tests.coffee -R spec -r mocha-cakes --compilers coffee:coffee-script`
 
 Note: You can use mocha-cakes with plain javascript.
 
