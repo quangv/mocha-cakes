@@ -235,7 +235,7 @@ Feature "Async tests with Mocha-Cakes", ->
 Install:
 
     cd my_project
-    npm -d install mocha-cakes
+    npm install --save-dev mocha-cakes
 
 # Mocha Reporter Support
 
